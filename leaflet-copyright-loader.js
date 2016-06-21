@@ -35,7 +35,7 @@
 					rawCHolderFixed.push(' ' + cLabel);
 
 					/* Remove duplicates */
-					cHolderFixed = rawCHolderFixed.reduce(function(a, b){ if (a.indexOf(b) < 0) a.push(b); return a; }, []);
+					cHolderFixed = rawCHolderFixed.reduce(function(a, b){ if (a.indexOf(b) < 0){ a.push(b); } return a; }, []);
 
  					/* Add comma before if not the first result: = "," + cHolderFixed; */
 					insertCHolderFixed.textContent = cHolderFixed;
@@ -51,7 +51,7 @@
 						if (mapBounds.intersects(boundsBox)){
 							if (map.getZoom() >= zoomMinLevel){
 								rawCHolder.push(' ' + cLabel);
-								cHolder = rawCHolder.reduce(function(a, b){ if (a.indexOf(b) < 0) a.push(b); return a; }, []);
+								cHolder = rawCHolder.reduce(function(a, b){ if (a.indexOf(b) < 0){ a.push(b); } return a; }, []);
 								insertCHolder.textContent = "," + cHolder + ".";
 							} else {
 								insertCHolder.textContent = ".";
