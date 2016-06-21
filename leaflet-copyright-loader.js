@@ -37,7 +37,7 @@
 					/* Remove duplicates */
 					cHolderFixed = rawCHolderFixed.reduce(function(a, b){ if (a.indexOf(b) < 0){ a.push(b); } return a; }, []);
 
- 					/* Add comma before if not the first result: = "," + cHolderFixed; */
+ 					/* Add comma before if not the first: = "," + cHolderFixed; */
 					insertCHolderFixed.textContent = cHolderFixed;
 				}
 				if (bbox && cLabel){
@@ -67,4 +67,3 @@
 	reqCHolder();
 	map.on('zoomend', reqCHolder);
 	map.on('moveend', reqCHolder);
-
