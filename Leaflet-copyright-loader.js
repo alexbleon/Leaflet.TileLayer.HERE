@@ -1,3 +1,5 @@
+/* Simple JSON copyright loader for Leaflet with HERE hybrid map. */
+
 /* var map = L.map('...', { attributionControl: false }); */
 L.control.attribution().addAttribution('©<span id="cHolderFixed"></span><span id="cHolder"></span>').addTo(map);
 
@@ -20,7 +22,6 @@ var reqCHolder = function(){
 	};
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
-
 	var matchBbox = function(jsonResult){
 		var rawCHolder = [], rawCHolderFixed = [], cHolder = [], cHolderFixed = [];
 
