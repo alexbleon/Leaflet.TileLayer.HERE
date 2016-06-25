@@ -8,7 +8,7 @@ var insertCHolder = document.getElementById('cHolder');
 var reqCHolder = function(){
 	var xmlhttp = new XMLHttpRequest();
 
-	/* Copyright query url of same base url as the map */
+	/* Copyright query url of same base url as the map tiles */
 	var url = "https://1.aerial.maps.api.here.com/maptile/2.1/copyright/newest" +
 		"?app_id={YOUR_APP_ID}" +
 		"&app_code={YOUR_APP_CODE}";
