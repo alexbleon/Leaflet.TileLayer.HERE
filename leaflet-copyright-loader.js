@@ -1,4 +1,3 @@
-/* Simple JSON copyright loader for Leaflet with HERE hybrid map. */
 
 /* var map = L.map('...', { attributionControl: false }); */
 L.control.attribution().addAttribution('©<span id="cHolderFixed"></span><span id="cHolder"></span>').addTo(map);
@@ -9,8 +8,8 @@ var insertCHolder = document.getElementById('cHolder');
 var reqCHolder = function(){
 	var xmlhttp = new XMLHttpRequest();
 
-	/* Copyright query url, based on the map used: 'aerial' for hybrid map */
-	var url = "https://1.aerial.maps.cit.api.here.com/maptile/2.1/copyright/newest" +
+	/* Copyright query url of same base url as the map */
+	var url = "https://1.aerial.maps.api.here.com/maptile/2.1/copyright/newest" +
 		"?app_id={YOUR_APP_ID}" +
 		"&app_code={YOUR_APP_CODE}";
 
