@@ -21,7 +21,7 @@ Link file:
 Add the copyright loader to the map:
 
 ```javascript
-var map = L.map('...', { attributionControl: false });
+var map = L.map('...', { attributionControl: false }).setView([lat, lng], 13);
 L.tileLayer('https://...').addTo(map);
 L.copyrightLoader(map);
 ```
