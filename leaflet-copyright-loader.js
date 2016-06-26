@@ -64,6 +64,6 @@ L.control.attribution().addAttribution('©<span id="cHolderFixed"></span><span i
 			}
 		}
 	};
-	map.on('zoomend', function(){ matchBbox(result) });
-	map.on('moveend', function(){ matchBbox(result) });
+	map.on('zoomend', function(){ matchBbox(result); });
+	map.on('moveend', function(){ matchBbox(result); });
 })();
