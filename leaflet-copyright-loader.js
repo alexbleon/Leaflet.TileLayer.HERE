@@ -4,7 +4,6 @@ L.control.attribution().addAttribution('©<span id="cHolderFixed"></span><span i
 
 (function(){
 	"use strict";
-
 	var insertCHolderFixed = document.getElementById('cHolderFixed');
 	var insertCHolder = document.getElementById('cHolder');
 
