@@ -1,9 +1,11 @@
 
 /* var map = L.map('...', { attributionControl: false }); */
-L.control.attribution().addAttribution('©<span id="cHolderFixed"></span><span id="cHolder"></span>').addTo(map);
 
-(function(){
+L.copyrightLoader = function(map){
 	"use strict";
+
+	L.control.attribution().addAttribution('©<span id="cHolderFixed"></span><span id="cHolder"></span>').addTo(map);
+
 	var insertCHolderFixed = document.getElementById('cHolderFixed');
 	var insertCHolder = document.getElementById('cHolder');
 
@@ -65,4 +67,4 @@ L.control.attribution().addAttribution('©<span id="cHolderFixed"></span><span i
 	};
 	map.on('zoomend', function(){ matchBbox(result); });
 	map.on('moveend', function(){ matchBbox(result); });
-})();
+};
