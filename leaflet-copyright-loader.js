@@ -14,6 +14,7 @@ L.control.attribution().addAttribution('©<span id="cHolderFixed"></span><span i
 		"&app_code={YOUR_APP_CODE}";
 
 	var xmlhttp = new XMLHttpRequest();
+	var result;
 	xmlhttp.onreadystatechange = function(){
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
 			var result = JSON.parse(xmlhttp.responseText);
@@ -63,6 +64,6 @@ L.control.attribution().addAttribution('©<span id="cHolderFixed"></span><span i
 			}
 		}
 	};
-	map.on('zoomend', xmlhttp.onreadystatechange);
-	map.on('moveend', xmlhttp.onreadystatechange);
+	map.on('zoomend', function(){ matchBbox(result) });
+	map.on('moveend', function(){ matchBbox(result) });
 })();
