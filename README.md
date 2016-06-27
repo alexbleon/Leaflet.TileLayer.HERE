@@ -1,27 +1,40 @@
 
-# Leaflet-copyright-loader.
+# Leaflet.TileLayer.HERE
 
-Simple JSON copyright loader for Leaflet with HERE hybrid map.
+Displays [map tiles from HERE maps](https://developer.here.com/rest-apis/documentation/enterprise-map-tile/topics/quick-start.html) in your Leaflet map.
 
---
 
-#####HOWTO:
+See the [live demo](http://ivansanchez.github.io/Leaflet.TileLayer.HERE/demo.html).
 
-Get the loader: [HERE](https://github.com/J-F-O/Leaflet-copyright-loader/archive/master.zip)
+## Usage
 
-Add your app id and app code to the copyright query url in the leaflet-copyright-loader.js file.
-And any other attribution not queried from the JSON to the: ``` L.control.attribution().addAttribution(...) ```
-
-Link file:
-
-```html
-<script type="text/javascript" src="leaflet-copyright-loader.js"></script>
+```
+L.tileLayer.here({appId: 'abcde', appCode: 'fghij'}).addTo(map);
 ```
 
-Add the copyright loader to the map:
+The following options are available:
 
-```javascript
-var map = L.map('...', { attributionControl: false }).setView([lat, lng], 13);
-L.tileLayer('https://...').addTo(map);
-L.copyrightLoader(map);
-```
+| option       | type    | default        |                                                                            |
+| ------------ | ------- | -------------- | -------------------------------------------------------------------------- |
+| `scheme`     | String  | `'normal.day'` | The "map scheme", as documented in the HERE API.                           |
+| `resource`   | String  | `'maptile'`    | The "map resource", as documented in the HERE API.                         |
+| `mapId`      | String  | `'newest'`     | Version of the map tiles to be used, or a hash of an unique map            |
+| `format`     | String  | `'png8'`       | Image format to be used (`png8`, `png`, or `jpg`)                          |
+| `appId`      | String  | none           | Required option. The `app_id` provided as part of the HERE credentials     |
+| `appCode`    | String  | none           | Required option. The `app_code` provided as part of the HERE credentials   |
+
+
+
+
+## Legalese
+
+----------------------------------------------------------------------------
+
+"THE BEER-WARE LICENSE":
+<ivan@sanchezortega.es> wrote this file. As long as you retain this notice you
+can do whatever you want with this stuff. If we meet some day, and you think
+this stuff is worth it, you can buy me a beer in return.
+
+----------------------------------------------------------------------------
+
+

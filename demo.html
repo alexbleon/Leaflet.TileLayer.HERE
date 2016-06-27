@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://leafletjs-cdn.s3.amazonaws.com/content/leaflet/master/leaflet.css" rel="stylesheet" type="text/css" />
+<script src="https://leafletjs-cdn.s3.amazonaws.com/content/leaflet/master/leaflet.js"></script>
+
+<script src="./leaflet-tilelayer-here.js"></script>
+
+  <meta charset="utf-8">
+  <title>Leaflet.TileLayer.HERE demo</title>
+  <style>
+    #map {
+      width:600px;
+      height:400px;
+    }
+  </style>
+</head>
+<body>
+  <div id='map'></div>
+
+
+
+  <script>
+
+    var myCenter = new L.LatLng(40.4, -3.6);
+    var map = new L.Map('map', {center: myCenter, zoom: 7});
+
+//     var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+//         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+//     }).addTo(map);
+
+	L.tileLayer.here({
+		appId: 'ViVS62MmsdTJSzwXMlHb',
+		appCode: 'bsODmSCzkVqEMR8TnGPHdw'
+	}).addTo(map);
+
+  </script>
+</body>
+</html>

@@ -1,9 +1,0 @@
----
-
-Leaflet-copyright-loader.
-
-2016 (c) J.F.O. https://github.com/J-F-O
-
-CC BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0/
-
----
