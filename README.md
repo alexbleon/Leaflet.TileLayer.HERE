@@ -4,7 +4,7 @@
 Displays [map tiles from HERE maps](https://developer.here.com/rest-apis/documentation/enterprise-map-tile/topics/quick-start.html) in your Leaflet map.
 
 
-See the [live demo](http://ivansanchez.github.io/Leaflet.TileLayer.HERE/demo.html).
+See the [live demo](http://ivansanchez.gitlab.io/Leaflet.TileLayer.HERE/demo.html).
 
 ## Usage
 
