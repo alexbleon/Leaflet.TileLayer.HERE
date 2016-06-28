@@ -81,6 +81,14 @@ L.TileLayer.HERE = L.TileLayer.extend({
 		}
 	},
 
+	onRemove: function onRemove(map) {
+		L.TileLayer.prototype.onRemove.call(this, map);
+
+		this._map.attributionControl.removeAttribution(this._attributionText);
+
+		this._map.off('moveend zoomend resetview', this._findCopyrightBBox, this);
+	},
+
 	_fetchAttributionBBoxes: function _onMapMove() {
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = L.bind(function(){
@@ -93,15 +101,18 @@ L.TileLayer.HERE = L.TileLayer.extend({
 	},
 
 	_parseAttributionBBoxes: function _parseAttributionBBoxes(json) {
-		var providers = json[this.options.scheme.split('.')[0]];
+		if (!this._map) { return; }
+		var providers = json[this.options.scheme.split('.')[0]] || json.normal;
 		for (var i=0; i<providers.length; i++) {
-			for (var j=0; j<providers[i].boxes.length; j++) {
-				var box = providers[i].boxes[j];
-				providers[i].boxes[j] = L.latLngBounds( [ [box[0], box[1]], [box[2], box[3]] ]);
+			if (providers[i].boxes) {
+				for (var j=0; j<providers[i].boxes.length; j++) {
+					var box = providers[i].boxes[j];
+					providers[i].boxes[j] = L.latLngBounds( [ [box[0], box[1]], [box[2], box[3]] ]);
+				}
 			}
 		}
 
-		map.on('moveend zoomend resetview', this._findCopyrightBBox, this);
+		this._map.on('moveend zoomend resetview', this._findCopyrightBBox, this);
 
 		this._attributionProviders = providers;
 
@@ -109,6 +120,7 @@ L.TileLayer.HERE = L.TileLayer.extend({
 	},
 
 	_findCopyrightBBox: function _findCopyrightBBox() {
+		if (!this._map) { return; }
 		var providers = this._attributionProviders;
 		var visibleProviders = [];
 		var zoom = this._map.getZoom();
@@ -116,6 +128,13 @@ L.TileLayer.HERE = L.TileLayer.extend({
 
 		for (var i=0; i<providers.length; i++) {
 			if (providers[i].minLevel < zoom && providers[i].maxLevel > zoom)
+
+			if (!providers[i].boxes) {
+				// No boxes = attribution always visible
+				visibleProviders.push(providers[i]);
+				break;
+			}
+
 			for (var j=0; j<providers[i].boxes.length; j++) {
 				var box = providers[i].boxes[j];
 				if (visibleBounds.overlaps(box)) {
