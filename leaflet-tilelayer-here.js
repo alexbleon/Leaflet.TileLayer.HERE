@@ -34,7 +34,7 @@ L.TileLayer.HERE = L.TileLayer.extend({
 
 		// 🍂option useCIT: boolean = false
 		// Whether to use the CIT when loading the here-maptiles
-		useCIT: false
+		useCIT: false,
 
 		// 🍂option useHTTPS: boolean = true
 		// Whether to use HTTPS when loading the here-maptiles
