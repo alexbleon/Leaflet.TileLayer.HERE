@@ -35,6 +35,10 @@ L.TileLayer.HERE = L.TileLayer.extend({
 		// 🍂option useCIT: boolean = false
 		// Whether to use the CIT when loading the here-maptiles
 		useCIT: false
+
+		// 🍂option useHTTPS: boolean = true
+		// Whether to use HTTPS when loading the here-maptiles
+		useHTTPS: false
 	},
 
 
@@ -63,9 +67,10 @@ L.TileLayer.HERE = L.TileLayer.extend({
 			tileServer = 'traffic' + baseUrl;
 		}
 
-		var tileUrl = 'https://{s}.' + tileServer + path;
+		var protocol = 'http' + (options.useHTTPS ? 's' : '');
+		var tileUrl = protocol + '://{s}.' + tileServer + path;
 
-		this._attributionUrl = L.Util.template('https://1.' + tileServer + attributionPath, this.options);
+		this._attributionUrl = L.Util.template(protocol + '://1.' + tileServer + attributionPath, this.options);
 
 		L.TileLayer.prototype.initialize.call(this, tileUrl, options);
 
