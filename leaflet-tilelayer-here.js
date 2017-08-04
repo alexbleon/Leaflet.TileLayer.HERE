@@ -41,14 +41,10 @@ L.TileLayer.HERE = L.TileLayer.extend({
 		var schemeStart = options.scheme.split('.')[0];
 		options.tileResolution = 256;
 
-		if (L.Browser.retina) {
-			options.tileResolution = 512;
-		}
-
-// 		{Base URL}{Path}/{resource (tile type)}/{map id}/{scheme}/{zoom}/{column}/{row}/{size}/{format}
-// 		?app_id={YOUR_APP_ID}
-// 		&app_code={YOUR_APP_CODE}
-// 		&{param}={value}
+		// {Base URL}{Path}/{resource (tile type)}/{map id}/{scheme}/{zoom}/{column}/{row}/{size}/{format}
+		// ?app_id={YOUR_APP_ID}
+		// &app_code={YOUR_APP_CODE}
+		// &{param}={value}
 
 		var path = '/{resource}/2.1/{resource}/{mapId}/{scheme}/{z}/{x}/{y}/{tileResolution}/{format}?app_id={appId}&app_code={appCode}';
 		var attributionPath = '/maptile/2.1/copyright/{mapId}?app_id={appId}&app_code={appCode}';
