@@ -38,7 +38,15 @@ L.TileLayer.HERE = L.TileLayer.extend({
 
 		// 🍂option useHTTPS: boolean = true
 		// Whether to use HTTPS when loading the here-maptiles
-		useHTTPS: true
+		useHTTPS: true,
+
+		// 🍂option language: String = ''
+		// The language of the descriptions on the maps that are loaded
+		language: '',
+
+		// 🍂option language: String = ''
+		// The second language of the descriptions on the maps that are loaded
+		language2: '',
 	},
 
 
@@ -54,7 +62,20 @@ L.TileLayer.HERE = L.TileLayer.extend({
 		// &app_code={YOUR_APP_CODE}
 		// &{param}={value}
 
-		var path = '/{resource}/2.1/{resource}/{mapId}/{scheme}/{z}/{x}/{y}/{tileResolution}/{format}?app_id={appId}&app_code={appCode}';
+		var params = [
+			'app_id=' + encodeURIComponent(options.appId),
+			'app_code=' + encodeURIComponent(options.appCode)
+		];
+		if(options.language) {
+			params.push('lg=' + encodeURIComponent(options.language));
+		}
+		if(options.language2) {
+			params.push('lg2=' + encodeURIComponent(options.language2));
+		}
+		var urlQuery = '?' + params.join('&');
+
+		var path = '/{resource}/2.1/{resource}/{mapId}/{scheme}/{z}/{x}/{y}/{tileResolution}/{format}' + urlQuery;
+		console.log("path", path);
 		var attributionPath = '/maptile/2.1/copyright/{mapId}?app_id={appId}&app_code={appCode}';
 
 		// make sure the CIT-url can be used
