@@ -31,6 +31,10 @@ L.TileLayer.HERE = L.TileLayer.extend({
 		// 🍂option appCode: String = ''
 		// Required option. The `app_code` provided as part of the HERE credentials
 		appCode: '',
+
+		// 🍂option useCIT: boolean = false
+		// Whether to use the CIT when loading the here-maptiles
+		useCIT: false
 	},
 
 
@@ -49,14 +53,14 @@ L.TileLayer.HERE = L.TileLayer.extend({
 		var path = '/{resource}/2.1/{resource}/{mapId}/{scheme}/{z}/{x}/{y}/{tileResolution}/{format}?app_id={appId}&app_code={appCode}';
 		var attributionPath = '/maptile/2.1/copyright/{mapId}?app_id={appId}&app_code={appCode}';
 
-		var tileServer = 'base.maps.api.here.com';
-		if (schemeStart == 'satellite' ||
-				schemeStart == 'terrain' ||
-				schemeStart == 'hybrid') {
-			tileServer = 'aerial.maps.api.here.com';
+		// make sure the CIT-url can be used
+		var baseUrl = 'maps' + (options.useCIT ? '.cit' : '') + '.api.here.com';
+		var tileServer = 'base.' + baseUrl;
+		if (schemeStart == 'satellite' || schemeStart == 'terrain' || schemeStart == 'hybrid') {
+			tileServer = 'aerial.' + baseUrl;
 		}
 		if (options.scheme.indexOf('.traffic.') !== -1) {
-			tileServer = 'traffic.maps.api.here.com';
+			tileServer = 'traffic' + baseUrl;
 		}
 
 		var tileUrl = 'https://{s}.' + tileServer + path;
