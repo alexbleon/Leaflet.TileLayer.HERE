@@ -20,6 +20,10 @@ The following options are available:
 | `resource`   | String  | `'maptile'`    | The "map resource", as documented in the HERE API.                         |
 | `mapId`      | String  | `'newest'`     | Version of the map tiles to be used, or a hash of an unique map            |
 | `format`     | String  | `'png8'`       | Image format to be used (`png8`, `png`, or `jpg`)                          |
+| `useCIT`     | Boolean | false          | Whether to use the CIT-URL when loading the tiles                          |
+| `useHTTPS`   | Boolean | true           | Whether to use HTTPS when requesting the tiles                             |
+| `language`   | String  | none           | The primary language on the tiles                                          |
+| `language2`  | String  | none           | The second language on the tiles                                           |
 | `appId`      | String  | none           | Required option. The `app_id` provided as part of the HERE credentials     |
 | `appCode`    | String  | none           | Required option. The `app_code` provided as part of the HERE credentials   |
 
