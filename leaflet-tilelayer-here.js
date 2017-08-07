@@ -74,7 +74,7 @@ L.TileLayer.HERE = L.TileLayer.extend({
 		}
 		var urlQuery = '?' + params.join('&');
 
-		var path = '/{resource}/2.1/{resource}/{mapId}/{scheme}/{z}/{x}/{y}/{tileResolution}/{format}' + urlQuery;
+		var path = '/maptile/2.1/{resource}/{mapId}/{scheme}/{z}/{x}/{y}/{tileResolution}/{format}' + urlQuery;
 		var attributionPath = '/maptile/2.1/copyright/{mapId}?app_id={appId}&app_code={appCode}';
 
 		// make sure the CIT-url can be used
