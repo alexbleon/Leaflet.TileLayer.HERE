@@ -107,11 +107,19 @@ L.TileLayer.HERE = L.TileLayer.extend({
 	},
 
 	onRemove: function onRemove(map) {
-		L.TileLayer.prototype.onRemove.call(this, map);
-
+		//
+		// Remove the attribution text, and clear the cached text so it will be recalculated
+		// if/when we are shown again.
+		//
 		this._map.attributionControl.removeAttribution(this._attributionText);
+		this._attributionText = '';
 
 		this._map.off('moveend zoomend resetview', this._findCopyrightBBox, this);
+
+		//
+		// Call the prototype last, once we've tidied up our own changes
+		//
+		L.TileLayer.prototype.onRemove.call(this, map);
 	},
 
 	_fetchAttributionBBoxes: function _onMapMove() {
@@ -152,24 +160,24 @@ L.TileLayer.HERE = L.TileLayer.extend({
 		var visibleBounds = this._map.getBounds();
 
 		for (var i=0; i<providers.length; i++) {
-			if (providers[i].minLevel < zoom && providers[i].maxLevel > zoom)
+			if (providers[i].minLevel <= zoom && providers[i].maxLevel >= zoom) {
 
-			if (!providers[i].boxes) {
-				// No boxes = attribution always visible
-				visibleProviders.push(providers[i]);
-				break;
-			}
-
-			for (var j=0; j<providers[i].boxes.length; j++) {
-				var box = providers[i].boxes[j];
-				if (visibleBounds.overlaps(box)) {
+				if (!providers[i].boxes) {
+					// No boxes = attribution always visible
 					visibleProviders.push(providers[i]);
-					break;
+				} else {
+					for (var j=0; j<providers[i].boxes.length; j++) {
+						var box = providers[i].boxes[j];
+						if (visibleBounds.intersects(box)) {
+							visibleProviders.push(providers[i]);
+							break;
+						}
+					}
 				}
 			}
 		}
 
-		var attributions = ['<a href="https://legal.here.com/terms/serviceterms/gb/">HERE maps</a>'];
+		var attributions = ['<a href="https://legal.here.com/en-gb/terms" target="_blank" rel="noopener noreferrer">HERE maps</a>'];
 		for (var i=0; i<visibleProviders.length; i++) {
 			var provider = visibleProviders[i];
 			attributions.push('<abbr title="' + provider.alt + '">' + provider.label + '</abbr>');
