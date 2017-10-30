@@ -177,7 +177,7 @@ L.TileLayer.HERE = L.TileLayer.extend({
 			}
 		}
 
-		var attributions = ['<a href="https://legal.here.com/terms/serviceterms/gb/">HERE maps</a>'];
+		var attributions = ['<a href="https://legal.here.com/en-gb/terms" target="_blank" rel="noopener noreferrer">HERE maps</a>'];
 		for (var i=0; i<visibleProviders.length; i++) {
 			var provider = visibleProviders[i];
 			attributions.push('<abbr title="' + provider.alt + '">' + provider.label + '</abbr>');
